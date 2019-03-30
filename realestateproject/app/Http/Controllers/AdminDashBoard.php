@@ -15,4 +15,9 @@ class AdminDashBoard extends Controller
      	//$article=article::where('state','=','requested')->get();
      	return view('admin.home');
      }
+     public function showadduser()
+
+     {
+     	return view('admin.adduser');
+     }
 }
