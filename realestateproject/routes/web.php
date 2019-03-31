@@ -18,3 +18,10 @@ Route::get('/profile','ProfileController@profile');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admindashboard','AdminDashBoard@showdashboard');
+Route::get('/adminshowadduser','AdminDashBoard@showadduser');
+Route::post('/adminadduser','AdminDashBoard@register');
+Route::get('/adminshowcreate','AdminDashBoard@showarticel');
+Route::post('/adminstorearticle','AdminDashBoard@storearticle');
+Route::resource('/articles','ArticlesController');
