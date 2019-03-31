@@ -20,4 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admindashboard','AdminDashBoard@showdashboard');
-Route::get('/admindashboardadd','AdminDashBoard@adduser');
+Route::get('/adminshowadduser','AdminDashBoard@showadduser');
+Route::post('/adminadduser','AdminDashBoard@register');
+Route::get('/adminshowcreate','AdminDashBoard@showarticel');
+Route::post('/adminstorearticle','AdminDashBoard@storearticle');

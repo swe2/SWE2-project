@@ -73,7 +73,7 @@ table.b {
 
       <!-- Nav Item - Pages Collapse Menu -->
            <li class="nav-item active">
-        <a class="nav-link" href="index.html" >
+        <a class="nav-link" href="/adminshowadduser" >
           
           <span style="position: relative; left:20px ; ">add</span></a>
       </li>
@@ -97,7 +97,7 @@ table.b {
       <li class="nav-item active">
         <a class="nav-link" href="index.html" >
           
-          <span style="position: relative; left:20px ; ">rate</span></a>
+          <span style="position: relative; left:20px ; ">add</span></a>
       </li>
 
       <!-- Nav Item - Charts -->
