@@ -73,7 +73,7 @@ table.b {
 
       <!-- Nav Item - Pages Collapse Menu -->
            <li class="nav-item active">
-        <a class="nav-link" href="/adminshowadduser" >
+        <a class="nav-link" href="index.html" >
           
           <span style="position: relative; left:20px ; ">add</span></a>
       </li>
@@ -97,7 +97,7 @@ table.b {
       <li class="nav-item active">
         <a class="nav-link" href="index.html" >
           
-          <span style="position: relative; left:20px ; ">add</span></a>
+          <span style="position: relative; left:20px ; ">rate</span></a>
       </li>
 
       <!-- Nav Item - Charts -->
@@ -314,10 +314,14 @@ table.b {
       @endif
       </td>
       <td>
-          <a href="#" class="btn btn-red btn-sm btn-icon icon-left">
-          <i class="entypo-cancel"></i>
-          Delete
-        </a>
+          <form action="/adminignore/{{$articles->id}}" method="POST">
+            @csrf
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </form>
+          <form action="" method="">
+            @csrf
+            <button class="btn btn-success btn-sm" style="position: relative; float: right; left: -280px; top:-30px;">approve</button>
+          </form>
         <br/>
       </td>
     </tr>

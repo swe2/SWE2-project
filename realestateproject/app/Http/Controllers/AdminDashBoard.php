@@ -79,6 +79,17 @@ class AdminDashBoard extends Controller
         'userid'=>'required',
         'cover_image'=>'image|nullable|max:1999'
     ]);
+    public function destroyarticle($id)
+     {
+        $article = Article::findOrFail($id);
+        $article->delete();
+     }
+
+     public function approvearticle($id)
+     {
+          $article = Article::findOrFail($id);
+          $article->update(array('state' => 'approved'));
+     }
 
     //Handle File upload
     if($request->hasFile('cover_image')){

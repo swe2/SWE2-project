@@ -27,3 +27,5 @@ Route::post('/adminstorearticle','AdminDashBoard@storearticle');
 Route::resource('/articles','ArticlesController');
 Route::get('/editeprofile', 'ProfileController@editeprofile');
 Route::post('/updateprofile', 'ProfileController@updateprofile');
+Route::post('/adminignore/{id}', 'AdminDashBoard@destroyarticle');
+Route::post('/adminapprove/{id}', 'AdminDashBoard@approvearticle');
