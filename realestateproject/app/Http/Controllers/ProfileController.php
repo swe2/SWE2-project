@@ -10,4 +10,16 @@ class ProfileController extends Controller
     {	
     	return view('user.profile');
     }
+	public function editeprofile()
+    {   
+        $user=Auth::user();
+        return view('user.editeprofile',compact('user'));
+    }
+
+    public function updateprofile(Request $request )
+    {   
+        
+         $user=Auth::user();
+         $user->update($request->all());
+    }
 }

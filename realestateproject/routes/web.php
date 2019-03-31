@@ -25,3 +25,5 @@ Route::post('/adminadduser','AdminDashBoard@register');
 Route::get('/adminshowcreate','AdminDashBoard@showarticel');
 Route::post('/adminstorearticle','AdminDashBoard@storearticle');
 Route::resource('/articles','ArticlesController');
+Route::get('/editeprofile', 'ProfileController@editeprofile');
+Route::post('/updateprofile', 'ProfileController@updateprofile');

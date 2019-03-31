@@ -74,9 +74,12 @@
                             <li><b>EMAIL : </b>{{$user->email}}</li>
                             <li><b>MARITAL STATUS : </b>Married</li>
                         </ul>
-                        <button type="button" class="btn south-btn" data-toggle="modal" data-target="#exampleModalCenter">
-                            edit
-                        </button>
+                        <form method="GET" action="/editeprofile">
+                            <button type="submit" class="btn south-btn"  >
+                                edit
+                            </button>
+                        </form>
+                        
 
                     </div>
                 </div>
