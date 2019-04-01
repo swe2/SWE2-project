@@ -24,7 +24,19 @@ class AdminDashBoard extends Controller
      use RegistersUsers;
      protected $redirectTo = '/home';
 
+      public function destroyarticle($id)
+     {
+        $article = Article::findOrFail($id);
+        $article->delete();
+        return redirect('/admindashboard');
+     }
 
+     public function approvearticle($id)
+     {
+          $article = Article::findOrFail($id);
+          $article->update(array('state' => 'approved'));
+          return redirect('/admindashboard');
+     }
 
      public function showdashboard()
      {	
@@ -79,17 +91,7 @@ class AdminDashBoard extends Controller
         'userid'=>'required',
         'cover_image'=>'image|nullable|max:1999'
     ]);
-    public function destroyarticle($id)
-     {
-        $article = Article::findOrFail($id);
-        $article->delete();
-     }
-
-     public function approvearticle($id)
-     {
-          $article = Article::findOrFail($id);
-          $article->update(array('state' => 'approved'));
-     }
+   
 
     //Handle File upload
     if($request->hasFile('cover_image')){
@@ -122,5 +124,6 @@ class AdminDashBoard extends Controller
             'cover_image'=>$filenameToStore,
             'state'=>$req
         ]);
+        return redirect('/admindashboard');
     }
 }

@@ -36,22 +36,14 @@
 				<form method="POST" action="{{ route('login') }}" class="login100-form validate-form flex-sb flex-w">
                         @csrf
 					<span class="login100-form-title p-b-53">
-						Sign In With
+						Sign In
 					</span>
 
-					<a href="{{ url('/login/facebook') }}" class="btn-face m-b-20">
-						<i class="fa fa-facebook-official"></i>
-						Facebook
-					</a>
-
-					<a href="#" class="btn-google m-b-20">
-						<img src="collect/images/icons/icon-google.png" alt="GOOGLE">
-						Google
-					</a>
+					
 					
 					<div class="p-t-31 p-b-9">
 						<span class="txt1">
-							Username
+							Email
 						</span>
 					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Username is required">

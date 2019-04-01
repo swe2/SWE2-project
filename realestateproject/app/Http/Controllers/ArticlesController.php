@@ -26,7 +26,9 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-
+        $articles=Article::orderBy('created_at','desc')->paginate(10);
+       //$articles=DB::select('SELECT * FROM articles');
+       return view('articles.index', compact('articles'));
     }
 
     /**

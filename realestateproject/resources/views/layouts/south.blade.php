@@ -68,7 +68,11 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="/profile/{{Auth::user()->name}}">Home</a></li>
+                                 @if(Auth::check())
+                                <li><a href="/">Home</a></li>
+                                @else
+                                <li><a href="/">Home</a></li>
+                                @endif
                                 <li><a href="#">empty</a>
                                     <ul class="dropdown">
                                         <li><a href="index.html">Home</a></li>
@@ -89,7 +93,9 @@
                                         <li><a href="elements.html">Elements</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="about-us.html">About Us</a></li>
+                                @if(Auth::check())
+                                <li><a href="/profile/{{Auth::user()->name}}">profile</a></li>
+                                @endif
                                 <li><a href="/articles">Properties</a></li>
                                 <li><a href="/articles/create">Add advertising</a></li>
                                 <li><a href="#">empty</a>

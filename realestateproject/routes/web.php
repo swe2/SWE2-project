@@ -10,22 +10,30 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\article;
+
 
 Route::get('/', function () {
-    return view('welcome');
+	$articles=Article::orderBy('created_at','desc')->paginate(10);
+       return view('articles.index', compact('articles'));
+   
 });
-Route::get('/profile','ProfileController@profile');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/profile/{username}','ProfileController@profile')->name('profile');
+Route::get('/editeprofile', 'ProfileController@editeprofile');
+Route::post('/updateprofile', 'ProfileController@updateprofile');
+
 Route::get('/admindashboard','AdminDashBoard@showdashboard');
+Route::post('/adminignore/{id}', 'AdminDashBoard@destroyarticle');
+Route::post('/adminapprove/{id}', 'AdminDashBoard@approvearticle');
 Route::get('/adminshowadduser','AdminDashBoard@showadduser');
 Route::post('/adminadduser','AdminDashBoard@register');
 Route::get('/adminshowcreate','AdminDashBoard@showarticel');
 Route::post('/adminstorearticle','AdminDashBoard@storearticle');
+
 Route::resource('/articles','ArticlesController');
-Route::get('/editeprofile', 'ProfileController@editeprofile');
-Route::post('/updateprofile', 'ProfileController@updateprofile');
-Route::post('/adminignore/{id}', 'AdminDashBoard@destroyarticle');
-Route::post('/adminapprove/{id}', 'AdminDashBoard@approvearticle');
+

@@ -68,21 +68,21 @@ table.b {
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Users
+        Add
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
            <li class="nav-item active">
-        <a class="nav-link" href="index.html" >
+        <a class="nav-link" href="/adminshowadduser" >
           
-          <span style="position: relative; left:20px ; ">add</span></a>
+          <span style="position: relative; left:20px ; ">user</span></a>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
           <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/adminshowcreate">
           
-          <span style="position: relative; left:20px ; ">delet</span></a>
+          <span style="position: relative; left:20px ; ">article</span></a>
       </li>
 
       <!-- Divider -->
@@ -318,7 +318,7 @@ table.b {
             @csrf
             <button class="btn btn-danger btn-sm">Delete</button>
           </form>
-          <form action="" method="">
+          <form action="/adminapprove/{{$articles->id}}" method="POST">
             @csrf
             <button class="btn btn-success btn-sm" style="position: relative; float: right; left: -280px; top:-30px;">approve</button>
           </form>
