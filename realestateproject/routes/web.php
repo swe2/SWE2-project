@@ -36,4 +36,5 @@ Route::get('/adminshowcreate','AdminDashBoard@showarticel');
 Route::post('/adminstorearticle','AdminDashBoard@storearticle');
 
 Route::resource('/articles','ArticlesController');
+Route::get('send','MailController@send');
 

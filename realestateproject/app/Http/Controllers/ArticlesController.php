@@ -55,6 +55,8 @@ class ArticlesController extends Controller
         'location'=>'required',
         'price'=>'required',
         'cover_image'=>'image|nullable|max:1999'
+
+        
     ]);
 
     //Handle File upload
@@ -88,6 +90,11 @@ class ArticlesController extends Controller
             'cover_image'=>$filenameToStore,
             'state'=>$req
         ]);
+             
+        Mail::send(['text'=>'mail'],['name'=>'Admin notify'],function($message){
+            $message->to('medo9708@hotmail.com','Admin')->subject('Realestate');
+            $message->from('swe2project@yahoo.com','admin');
+        });
     }
 
     /**
