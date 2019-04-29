@@ -8,6 +8,7 @@
     box-shadow: 0px 2px 2px rgba(0,0,0,0.3);
               }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 @section('content')
 
  <!-- ##### Hero Area Start ##### -->
@@ -54,7 +55,22 @@
     <!-- ##### Hero Area End ##### -->
 
     <!-- ##### Advance Search Area Start ##### -->
-  
+  <div class="south-search-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="advanced-search-form text-center">
+                        <!-- Search Title -->
+                       
+                        <!-- Search Form -->
+                      <input type="text" name="Search" id="Search" placeholder="Search" class="form-control">
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- ##### Advance Search Area End ##### -->
 
     <!-- ##### Featured Properties Area Start ##### -->
@@ -63,7 +79,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading wow fadeInUp">
-                        <h2>featured Properties</h2>
+                        <h2 id="test">featured Properties</h2>
                         <p>Suspendisse dictum enim sit amet libero malesuada feugiat.</p>
                     </div>
                 </div>
@@ -221,3 +237,25 @@
     <!-- ##### Editor Area End ##### -->
 
 @endsection
+<script >
+    $(document).ready(function(){
+    $(document).on('keyup','#Search',function(){
+            var query = $(this).val();
+            $.ajax({
+                url:"{{route('searchadv')}}",
+                method:'GET',
+                data:{query:query},
+                dataType:'json',
+                success:function(data)
+                {
+                    
+                    $("#test").html("<b>hey there</b>"+data.total_data+"wow");
+                    
+                }
+            })
+    }); 
+
+
+
+});
+</script>

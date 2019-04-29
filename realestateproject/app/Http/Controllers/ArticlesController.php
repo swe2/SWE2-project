@@ -16,7 +16,7 @@ class ArticlesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth',['except'=>['index','show']]);
+        $this->middleware('auth',['except'=>['index','show','action']]);
     }
 
     /**
@@ -140,5 +140,28 @@ class ArticlesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+     public function action(Request $request)
+    {
+        if($request->ajax())
+        {
+            $query = $request->get('query');
+            $articles=Article::where('location', 'like' , '%'.$query.'%');
+            $total_row = $articles->count();
+            if($total_row > 0)
+            {
+                $data = $articles;
+            }
+           
+
+        $dataall = array(
+            'articel_data' => $data,
+            'total_data'   => $total_row
+            );
+
+            return response()->json($dataall, 200);
+        }
     }
 }
