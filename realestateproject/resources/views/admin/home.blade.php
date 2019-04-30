@@ -320,7 +320,7 @@ table.b {
           </form>
           <form action="/adminapprove/{{$articles->id}}" method="POST">
             @csrf
-            <button class="btn btn-success btn-sm" style="position: relative; float: right; left: -280px; top:-30px;">approve</button>
+            <button class="btn btn-success btn-sm" style="position: relative; float: right; left: -130px; top:-30px;">approve</button>
           </form>
         <br/>
       </td>

@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="advertisingdiv">
 
                 <!-- Single Featured Property -->
                 @forelse($articles as $article)
@@ -236,10 +236,13 @@
     </section>
     <!-- ##### Editor Area End ##### -->
 
-@endsection
+
+
+
 <script >
     $(document).ready(function(){
     $(document).on('keyup','#Search',function(){
+            $("#advertisingdiv").empty();
             var query = $(this).val();
             $.ajax({
                 url:"{{route('searchadv')}}",
@@ -248,9 +251,17 @@
                 dataType:'json',
                 success:function(data)
                 {
-                    
-                    $("#test").html("<b>hey there</b>"+data.total_data+"wow");
-                    
+                    //var obj = JSON.parse(data);
+                   
+                    $.each(data.articles, function(i, obj){
+                         
+                        document.getElementById("advertisingdiv").innerHTML += 
+
+                            '<div class="col-12 col-md-6 col-xl-4"><a href="/articles/'+obj.id+'"><div class="single-featured-property mb-50 wow fadeInUp"data-wow-delay="100ms"><!-- Property Thumbnail --><div class="property-thumb"><img  src="/storage/cover_image/'+obj.cover_image+'"alt=""><div class="tag"><span>'+obj.type+'</span></div><div class="list-price"><p>$ '+obj.price+'</p></div></div><!-- Property Content --><div class="property-content"><h5>'+obj.location+'</h5><p class="location"><img src="/images/icons/location.png" alt="">'+obj.location+'</p><p>Integer nec bibendum lacus. Suspendisse dictum enim sit amet libero malesuada.</p><div class="property-meta-data d-flex align-items-end justify-content-between"><div class="new-tag"><img src="/images/icons/new.png" alt=""></div><div class="bathroom"><img src="/images/icons/bathtub.png" alt=""><span>2</span></div><div class="garage"><img src="/images/icons/garage.png" alt=""><span>2</span></div><div class="space"><img src="/images/icons/space.png" alt=""><span>'+obj.area+' sq ft</span></div></div></div></div></a> </div>'
+
+
+                        ;
+                    });
                 }
             })
     }); 
@@ -259,3 +270,5 @@
 
 });
 </script>
+@endsection
+

@@ -146,22 +146,20 @@ class ArticlesController extends Controller
      public function action(Request $request)
     {
         if($request->ajax())
-        {
+         {
             $query = $request->get('query');
-            $articles=Article::where('location', 'like' , '%'.$query.'%');
+            $articles=Article::where('location', 'like' , '%'.$query.'%')->get();
             $total_row = $articles->count();
+            $data = ['articles' => ''];
             if($total_row > 0)
             {
-                $data = $articles;
+                $data = ['articles' => $articles];
             }
            
 
-        $dataall = array(
-            'articel_data' => $data,
-            'total_data'   => $total_row
-            );
+      
 
-            return response()->json($dataall, 200);
+            return response()->json($data, 200);
         }
     }
 }
