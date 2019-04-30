@@ -38,3 +38,4 @@ Route::get('/article/search','ArticlesController@action')->name('searchadv');
 Route::resource('/articles','ArticlesController');
 Route::get('send','MailController@send');
 
+
