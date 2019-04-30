@@ -296,16 +296,21 @@ table.b {
 
         </nav>
         <!-- End of Topbar -->
+        
             <table cellspacing="0" cellpadding="0" class="table table-bordered b">
               <thead>
                 <tr>
                  <th>ID</th>
                  <th>Photo</th>
+                 <th>rate</th>
                  <th>Actions</th>
+                 
+
                 </tr>
               </thead>
               <tbody>
     @foreach($article as $articles)
+    <form action="/adminapprove/{{$articles->id}}" method="POST" id="my_form"> @csrf</form>
     <tr>
       <td class="center">{{$articles->id}}</td>
       <td>
@@ -314,16 +319,24 @@ table.b {
       @endif
       </td>
       <td>
+        
+        <input type="hidden" name="state" value="approve" form="my_form" />
+        <input type="number" name="rate" class="form-control" style="width: 100px;" form="my_form" />
+      </td>
+      <td>
           <form action="/adminignore/{{$articles->id}}" method="POST">
             @csrf
             <button class="btn btn-danger btn-sm">Delete</button>
           </form>
-          <form action="/adminapprove/{{$articles->id}}" method="POST">
-            @csrf
-            <button class="btn btn-success btn-sm" style="position: relative; float: right; left: -130px; top:-30px;">approve</button>
-          </form>
+         
+            
+            <input type="submit" class="btn btn-success btn-sm" style="position: relative; float: right; left: -100px; top:-30px;" value="approve" form="my_form">
+          
+          
         <br/>
       </td>
+      
+      
     </tr>
     @endforeach
     
