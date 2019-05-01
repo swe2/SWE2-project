@@ -8,6 +8,7 @@
     box-shadow: 0px 2px 2px rgba(0,0,0,0.3);
               }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 @section('content')
 
  <!-- ##### Hero Area Start ##### -->
@@ -54,7 +55,22 @@
     <!-- ##### Hero Area End ##### -->
 
     <!-- ##### Advance Search Area Start ##### -->
-  
+  <div class="south-search-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="advanced-search-form text-center">
+                        <!-- Search Title -->
+                       
+                        <!-- Search Form -->
+                      <input type="text" name="Search" id="Search" placeholder="Search" class="form-control">
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- ##### Advance Search Area End ##### -->
 
     <!-- ##### Featured Properties Area Start ##### -->
@@ -63,13 +79,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading wow fadeInUp">
-                        <h2>featured Properties</h2>
+                        <h2 id="test">featured Properties</h2>
                         <p>Suspendisse dictum enim sit amet libero malesuada feugiat.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="advertisingdiv">
 
                 <!-- Single Featured Property -->
                 @forelse($articles as $article)
@@ -220,4 +236,39 @@
     </section>
     <!-- ##### Editor Area End ##### -->
 
+
+
+
+<script >
+    $(document).ready(function(){
+    $(document).on('keyup','#Search',function(){
+            $("#advertisingdiv").empty();
+            var query = $(this).val();
+            $.ajax({
+                url:"{{route('searchadv')}}",
+                method:'GET',
+                data:{query:query},
+                dataType:'json',
+                success:function(data)
+                {
+                    //var obj = JSON.parse(data);
+                   
+                    $.each(data.articles, function(i, obj){
+                         
+                        document.getElementById("advertisingdiv").innerHTML += 
+
+                            '<div class="col-12 col-md-6 col-xl-4"><a href="/articles/'+obj.id+'"><div class="single-featured-property mb-50 wow fadeInUp"data-wow-delay="100ms"><!-- Property Thumbnail --><div class="property-thumb"><img  src="/storage/cover_image/'+obj.cover_image+'"alt=""><div class="tag"><span>'+obj.type+'</span></div><div class="list-price"><p>$ '+obj.price+'</p></div></div><!-- Property Content --><div class="property-content"><h5>'+obj.location+'</h5><p class="location"><img src="/images/icons/location.png" alt="">'+obj.location+'</p><p>Integer nec bibendum lacus. Suspendisse dictum enim sit amet libero malesuada.</p><div class="property-meta-data d-flex align-items-end justify-content-between"><div class="new-tag"><img src="/images/icons/new.png" alt=""></div><div class="bathroom"><img src="/images/icons/bathtub.png" alt=""><span>2</span></div><div class="garage"><img src="/images/icons/garage.png" alt=""><span>2</span></div><div class="space"><img src="/images/icons/space.png" alt=""><span>'+obj.area+' sq ft</span></div></div></div></div></a> </div>'
+
+
+                        ;
+                    });
+                }
+            })
+    }); 
+
+
+
+});
+</script>
 @endsection
+

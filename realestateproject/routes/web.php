@@ -34,7 +34,8 @@ Route::get('/adminshowadduser','AdminDashBoard@showadduser');
 Route::post('/adminadduser','AdminDashBoard@register');
 Route::get('/adminshowcreate','AdminDashBoard@showarticel');
 Route::post('/adminstorearticle','AdminDashBoard@storearticle');
-
+Route::get('/article/search','ArticlesController@action')->name('searchadv');
 Route::resource('/articles','ArticlesController');
 Route::get('send','MailController@send');
+
 

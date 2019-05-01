@@ -31,11 +31,12 @@ class AdminDashBoard extends Controller
         return redirect('/admindashboard');
      }
 
-     public function approvearticle($id)
+    public function approvearticle(Request $request,$id)
      {
           $article = Article::findOrFail($id);
-          $article->update(array('state' => 'approved'));
-          return redirect('/admindashboard');
+          
+          $article->update($request->all());
+          
      }
 
      public function showdashboard()
