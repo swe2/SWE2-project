@@ -1,1 +1,1 @@
-Pleasebe notified -> a user made a new article
+Please be notified -> a user made a new article

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\article;
 use DB;
 use Auth;
+use App\Http\Controllers\MailController;
 class ArticlesController extends Controller
 {
 
@@ -88,13 +89,11 @@ class ArticlesController extends Controller
             'location'=>$request->location,
             'price'=>$request->price,
             'cover_image'=>$filenameToStore,
-            'state'=>$req
+            'state'=>$req,
+            MailController::send()
         ]);
              
-        Mail::send(['text'=>'mail'],['name'=>'Admin notify'],function($message){
-            $message->to('medo9708@hotmail.com','Admin')->subject('Realestate');
-            $message->from('swe2project@yahoo.com','admin');
-        });
+
     }
 
     /**
