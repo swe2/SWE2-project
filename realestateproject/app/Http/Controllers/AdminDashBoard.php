@@ -36,6 +36,7 @@ class AdminDashBoard extends Controller
           $article = Article::findOrFail($id);
           
           $article->update($request->all());
+          return redirect('/admindashboard');
           
      }
 

@@ -73,66 +73,17 @@
                                 @else
                                 <li><a href="/">Home</a></li>
                                 @endif
-                                <li><a href="#">empty</a>
-                                    <ul class="dropdown">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about-us.html">About Us</a></li>
-                                        <li><a href="#">Listings</a>
-                                            <ul class="dropdown">
-                                                <li><a href="listings.html">Listings</a></li>
-                                                <li><a href="single-listings.html">Single Listings</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Blog</a>
-                                            <ul class="dropdown">
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="single-blog.html">Single Blog</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="elements.html">Elements</a></li>
-                                    </ul>
-                                </li>
+                                
                                 @if(Auth::check())
                                 <li><a href="/profile/{{Auth::user()->name}}">profile</a></li>
                                 @endif
                                 <li><a href="/articles">Properties</a></li>
                                 <li><a href="/articles/create">Add advertising</a></li>
-                                <li><a href="#">empty</a>
-                                    <div class="megamenu">
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 1</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 2</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 3</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 4</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                    </div>
+                                @if(Auth::check())
+                                <li><a href="{{ route('logout') }}">logout</a>
+                                @else
+                                <li><a href="{{ route('login') }}">sign in</a>
+                                @endif
                                 </li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>

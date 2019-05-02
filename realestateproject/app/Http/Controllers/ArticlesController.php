@@ -7,6 +7,7 @@ use App\article;
 use DB;
 use Auth;
 use App\Http\Controllers\MailController;
+use App\Comment;
 class ArticlesController extends Controller
 {
 
@@ -27,7 +28,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles=Article::orderBy('created_at','desc')->paginate(10);
+        $articles=Article::orderBy('created_at','desc');
        //$articles=DB::select('SELECT * FROM articles');
        return view('articles.index', compact('articles'));
     }
@@ -90,9 +91,9 @@ class ArticlesController extends Controller
             'price'=>$request->price,
             'cover_image'=>$filenameToStore,
             'state'=>$req,
-            MailController::send()
+            
         ]);
-             
+             return redirect('/');
 
     }
 
@@ -104,7 +105,9 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-
+         $article=Article::find($id);
+        $comments=Comment::where('article_id', '=' ,$article->id )->get();
+        return view('articles.show',compact('article'))->with('comments',$comments);
     }
 
     /**

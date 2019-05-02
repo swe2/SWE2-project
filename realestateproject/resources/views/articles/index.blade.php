@@ -90,6 +90,7 @@
                 <!-- Single Featured Property -->
                 @forelse($articles as $article)
                 <div class="col-12 col-md-6 col-xl-4">
+                     <a href="/articles/{{$article->id}}">
                     <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
                         <!-- Property Thumbnail -->
                         <div class="property-thumb">
@@ -126,6 +127,7 @@
                             </div>
                         </div>
                     </div>
+                     </a> 
                 </div>
                 @empty
                 no articles.

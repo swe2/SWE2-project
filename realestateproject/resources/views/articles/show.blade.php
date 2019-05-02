@@ -1,4 +1,5 @@
 @extends ('layouts.south')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 @section ('content')
 
     <!-- ##### Breadcumb Area Start ##### -->
@@ -110,7 +111,7 @@
 
                   <div class="comments-area">
                         <h5>4 Comments</h5>
-                        <ol>
+                        <ol id="comments_ol">
                             <!-- Single Comment Area -->
                           @forelse($comments as $comment)
                             <li class="single_comment_area">
@@ -126,7 +127,7 @@
                                             <a href="#" class="comment-date">{{$comment->created_at}}</a> |
                                             <a href="#" class="comment-reply">Reply</a>
                                         </div>
-                                        <p>{{$comment->type}}.</p>
+                                        <p>{{$comment->type}}</p>
                                     </div>
                                 </div>
                             </li>
@@ -142,18 +143,52 @@
                             <h5>Leave a comment</h5>
 
                             <!-- Comment Form -->
-                            <form action="/addcomment" method="post">
+                            <form method="post" id="comment-form">
                                 {{csrf_field()}}
                                <input type="hidden" name="article_id" value="{{ $article->id }}" /> 
                                 <div class="form-group">
                                     <textarea class="form-control" name="type" id="message" cols="30" rows="10" placeholder="Message"></textarea>
                                 </div>
-                                <button type="submit" class="btn south-btn">Submit Reply</button>
+                                
+                                <input type="submit" value="Submit Reply" class="btn south-btn">
                             </form>
                         </div>
                     </div>
         </div>
     </section>
 
+<script >
+    $(document).ready(function(){
+    $('#comment-form').on('submit',function(event){
+            $("#comments_ol").empty();
+            event.preventDefault();
+            var form_data = $(this).serialize();
+            $.ajax({
+                url:"{{route('commentadd')}}",
+                method:'POST',
+                data:form_data,
+                dataType:'json',
+                success:function(data)
+                {
+                     $.each(data, function(i, obj){
+                        console.log(obj.user);
 
+                            document.getElementById("comments_ol").innerHTML += 
+
+                            '<li class="single_comment_area"><div class="comment-wrapper d-flex"><!-- Comment Meta --><div class="comment-author"><img  src="/storage/cover_image/'+obj.cover_image+'" alt=""></div><!-- Comment Content --><div class="comment-content"><div class="comment-meta"><a href="#" class="comment-author-name">'+obj.user_name+'</a> |<a href="#" class="comment-date">'+obj.created_at+'</a> |<a href="#" class="comment-reply">Reply</a></div><p>'+obj.type+'</p></div></div></li>'
+
+
+                        ;
+
+
+
+                    });
+                }
+            })
+    }); 
+
+
+
+});
+</script>
 @endsection

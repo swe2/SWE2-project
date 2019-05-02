@@ -14,7 +14,8 @@ use App\article;
 
 
 Route::get('/', function () {
-	$articles=Article::orderBy('created_at','desc')->paginate(10);
+	$articles=Article::orderBy('created_at','desc')->get();
+	
        return view('articles.index', compact('articles'));
    
 });
@@ -37,5 +38,6 @@ Route::post('/adminstorearticle','AdminDashBoard@storearticle');
 Route::get('/article/search','ArticlesController@action')->name('searchadv');
 Route::resource('/articles','ArticlesController');
 Route::get('send','MailController@send');
+Route::post('/addcomment', 'CommentsController@store')->name('commentadd');
 
 
